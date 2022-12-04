@@ -38,6 +38,8 @@ class _PlaybookGalleryState extends State<PlaybookGallery> {
   final _scrollController = ScrollController();
   List<Story> _stories = [];
 
+  Size? _currentDevice;
+
   @override
   void initState() {
     super.initState();
@@ -93,6 +95,7 @@ class _PlaybookGalleryState extends State<PlaybookGallery> {
                   ),
                 if (widget.viewports.isNotEmpty)
                   DropdownButton<Size?>(
+                    value: _currentDevice,
                     items: [
                       const DropdownMenuItem(
                         value: null,
@@ -105,7 +108,11 @@ class _PlaybookGalleryState extends State<PlaybookGallery> {
                         ),
                       ),
                     ],
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      setState(() {
+                        _currentDevice = value;
+                      });
+                    },
                   ),
                 ...widget.otherCustomActions,
               ],
