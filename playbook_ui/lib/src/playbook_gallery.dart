@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playbook/playbook.dart';
+import 'package:playbook_snapshot/playbook_snapshot.dart';
 
 import 'component/component.dart';
 import 'scenario_container.dart';
@@ -12,6 +13,7 @@ class PlaybookGallery extends StatefulWidget {
     this.searchTextController,
     this.onCustomActionPressed,
     this.otherCustomActions = const [],
+    this.viewports = const [],
     required this.playbook,
   }) : super(key: key);
 
@@ -21,13 +23,15 @@ class PlaybookGallery extends StatefulWidget {
   final VoidCallback? onCustomActionPressed;
   final List<Widget> otherCustomActions;
   final Playbook playbook;
+  final List<SnapshotDevice> viewports;
 
   @override
   _PlaybookGalleryState createState() => _PlaybookGalleryState();
 }
 
 class _PlaybookGalleryState extends State<PlaybookGallery> {
-  final TextEditingController _defaultSearchTextController = TextEditingController();
+  final TextEditingController _defaultSearchTextController =
+      TextEditingController();
   TextEditingController get _effectiveSearchTextController =>
       widget.searchTextController ?? _defaultSearchTextController;
 
@@ -140,11 +144,13 @@ class _PlaybookGalleryState extends State<PlaybookGallery> {
                               .map((e) => ScenarioContainer(
                                     key: ValueKey(e),
                                     scenario: e,
-                                    thumbnailScale: widget.scenarioThumbnailScale,
+                                    thumbnailScale:
+                                        widget.scenarioThumbnailScale,
                                   ))
                               .toList()
                             ..sort(
-                              (s1, s2) => s1.scenario.title.compareTo(s2.scenario.title),
+                              (s1, s2) => s1.scenario.title
+                                  .compareTo(s2.scenario.title),
                             ),
                         ),
                       ),
@@ -190,14 +196,17 @@ class _PlaybookGalleryState extends State<PlaybookGallery> {
     if (_effectiveSearchTextController.text.isEmpty) {
       _stories = widget.playbook.stories.toList();
     } else {
-      final reg = RegExp(_effectiveSearchTextController.text, caseSensitive: false);
+      final reg =
+          RegExp(_effectiveSearchTextController.text, caseSensitive: false);
       _stories = widget.playbook.stories
           .map(
             (story) => Story(
               story.title,
               scenarios: story.title.contains(reg)
                   ? story.scenarios
-                  : story.scenarios.where((scenario) => scenario.title.contains(reg)).toList(),
+                  : story.scenarios
+                      .where((scenario) => scenario.title.contains(reg))
+                      .toList(),
             ),
           )
           .where((story) => story.scenarios.isNotEmpty)
