@@ -38,7 +38,7 @@ class _PlaybookGalleryState extends State<PlaybookGallery> {
   final _scrollController = ScrollController();
   List<Story> _stories = [];
 
-  Size? _currentDevice;
+  Size? _currentDeviceSize;
 
   @override
   void initState() {
@@ -95,7 +95,7 @@ class _PlaybookGalleryState extends State<PlaybookGallery> {
                   ),
                 if (widget.viewports.isNotEmpty)
                   DropdownButton<Size?>(
-                    value: _currentDevice,
+                    value: _currentDeviceSize,
                     style: Theme.of(context).textTheme.headline6,
                     items: [
                       const DropdownMenuItem(
@@ -111,7 +111,7 @@ class _PlaybookGalleryState extends State<PlaybookGallery> {
                     ],
                     onChanged: (value) {
                       setState(() {
-                        _currentDevice = value;
+                        _currentDeviceSize = value;
                       });
                     },
                   ),
@@ -170,6 +170,7 @@ class _PlaybookGalleryState extends State<PlaybookGallery> {
                                     scenario: e,
                                     thumbnailScale:
                                         widget.scenarioThumbnailScale,
+                                    deviceSize: _currentDeviceSize,
                                   ))
                               .toList()
                             ..sort(
