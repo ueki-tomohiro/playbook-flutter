@@ -8,10 +8,12 @@ class ScenarioContainer extends StatelessWidget {
     Key? key,
     required this.scenario,
     required this.thumbnailScale,
+    required this.deviceSize,
   }) : super(key: key);
 
   final Scenario scenario;
   final double thumbnailScale;
+  final Size? deviceSize;
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +75,7 @@ class ScenarioContainer extends StatelessWidget {
           builder: (context) {
             return DialogScaffold(
               title: Text(scenario.title),
+              deviceSize: deviceSize,
               body: ScenarioWidget(scenario: scenario),
             );
           },

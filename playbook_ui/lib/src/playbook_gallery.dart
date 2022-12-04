@@ -96,6 +96,7 @@ class _PlaybookGalleryState extends State<PlaybookGallery> {
                 if (widget.viewports.isNotEmpty)
                   DropdownButton<Size?>(
                     value: _currentDevice,
+                    style: Theme.of(context).textTheme.headline6,
                     items: [
                       const DropdownMenuItem(
                         value: null,

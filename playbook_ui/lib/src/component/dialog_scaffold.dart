@@ -5,10 +5,12 @@ class DialogScaffold extends StatelessWidget {
     Key? key,
     this.body,
     this.title,
+    this.deviceSize,
   }) : super(key: key);
 
   final Widget? body;
   final Widget? title;
+  final Size? deviceSize;
 
   @override
   Widget build(BuildContext context) {
