@@ -91,6 +91,22 @@ class _PlaybookGalleryState extends State<PlaybookGallery> {
                     onPressed: widget.onCustomActionPressed,
                     icon: const Icon(Icons.settings),
                   ),
+                if (widget.viewports.isNotEmpty)
+                  DropdownButton<Size?>(
+                    items: [
+                      const DropdownMenuItem(
+                        value: null,
+                        child: Text('100%'),
+                      ),
+                      ...widget.viewports.map(
+                        (device) => DropdownMenuItem(
+                          value: device.size,
+                          child: Text(device.name),
+                        ),
+                      ),
+                    ],
+                    onChanged: (value) {},
+                  ),
                 ...widget.otherCustomActions,
               ],
             ),
