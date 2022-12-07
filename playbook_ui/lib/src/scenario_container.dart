@@ -8,7 +8,7 @@ class ScenarioContainer extends StatelessWidget {
     Key? key,
     required this.scenario,
     required this.thumbnailScale,
-    required this.deviceSize,
+    this.deviceSize,
   }) : super(key: key);
 
   final Scenario scenario;

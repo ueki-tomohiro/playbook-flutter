@@ -15,6 +15,7 @@ class DialogScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const height = 44.0;
+    final deviceSize = this.deviceSize;
 
     return Scaffold(
       appBar: AppBar(
@@ -29,7 +30,12 @@ class DialogScaffold extends StatelessWidget {
           ),
         ],
       ),
-      body: body,
+      body: deviceSize != null
+          ? SizedBox.fromSize(
+              size: deviceSize,
+              child: body,
+            )
+          : body,
     );
   }
 }
