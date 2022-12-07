@@ -126,7 +126,10 @@ class _PlaybookGalleryState extends State<PlaybookGallery> {
                 ),
               ),
             ),
-            SliverList(
+            SliverGrid(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+              ),
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   final story = _stories.elementAt(index);
